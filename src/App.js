@@ -1,26 +1,49 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import LocationType from './PropTypes/LocationType';
+import { setCurrentLocationByIP } from './Actions/LocationAction';
+import { NavBar } from './Components/NavBar/NavBar';
+import WeatherLayout from './Containers/WeatherLayout';
+import Favorites from './Components/Favorites/Favorites';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    // after start application, if location is not defined yet
+    // try to get location by ip address
+    const { location, dispatch } = this.props;
+    if (!location) {
+      dispatch(setCurrentLocationByIP());
+    }
+  }
+
+  render() {
+    return (
+      <div className="container-fluid app-container px-0">
+        <Router>
+          <NavBar />
+          <Switch>
+            <Route exact path="/" component={WeatherLayout} />
+            <Route path="/favorites" component={Favorites} />
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
 }
 
-export default App;
+App.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  location: PropTypes.shape(LocationType).isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  location: state.weather.location,
+});
+
+export default connect(mapStateToProps)(App);

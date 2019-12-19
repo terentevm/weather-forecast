@@ -1,0 +1,41 @@
+
+.forecast_card {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.forecast_list {
+    list-style: none;
+    margin: 0 0;
+    padding: 0 0;
+}
+
+.forecast_day_wrapper {
+    position: relative;
+    width: 100%;
+    border: none;
+    padding: 5px 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.forecast_day_wrapper:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.fc_day__title {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+}
+.fc_day_part__title {
+    width: 20%;
+}
+
+.fc_day_part__weather {
+    width: 20%;
+}
+
+.fc_day_part__wind {
+    width: 20%;
+}

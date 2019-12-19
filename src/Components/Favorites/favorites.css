@@ -1,0 +1,17 @@
+.favorites_row {
+     display: flex;
+     flex-wrap: wrap;
+     flex-direction: row;
+}
+
+.favorites_item {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 350px;
+    margin: 10px 10px;
+}
+
+.favorites_item:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
