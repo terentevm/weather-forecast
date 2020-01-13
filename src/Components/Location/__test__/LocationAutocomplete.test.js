@@ -128,29 +128,3 @@ it('test dropdown items selection', () => {
 
   expect(onSelect).toHaveBeenCalledTimes(1);
 });
-
-// it("check that after click on clean icon input doesn't contain text", ()=>{
-//
-//     let search = 'buenos';
-//     const searchOnInput = ()=>{};
-//     const searchOnClear = ()=>{};
-//     const onSelect = ()=>{};
-//     const { queryByTestId } = render(<Autocomplete
-//     search={search}
-//     locations={testLocations}
-//     searchOnInput={searchOnInput}
-//     searchOnClear={searchOnClear}
-//     onSelect={onSelect}
-//     />);
-//
-//     const input = queryByTestId('ac_input');
-//     const iconClean = queryByTestId('ac_input_clear_btn');
-//
-//     expect(input).toHaveValue('buenos');
-//     expect(iconClean).toBeInTheDocument();
-//
-//     fireEvent.click(iconClean);
-//
-//     expect(input).toHaveValue('');
-//
-// });

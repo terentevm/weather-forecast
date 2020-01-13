@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import './CurrentWeather.css';
 import format from 'date-fns/format';
 import addSeconds from 'date-fns/addSeconds';
@@ -79,15 +78,32 @@ class Current extends React.Component {
       timeStr = format(locationDateTime, 'HH:mm', localeOptions);
     }
 
-    const iconUpdateClassName = this.props.processing === true ? 'processing' : '';
+    const processingIconRender = () => {
+      if (this.props.processing === true) {
+        return (
+        <span>
+            <img
+            id="w_current_update_icon"
+            src={IconUpdate}
+            alt="update icon"
+            width="24"
+            height="24"
+            className="processing"
+            data-testid="w_current_update_icon"
+            />
+          </span>
+        );
+      }
+    };
 
+    let cardClassName = 'card current-card ' + cond.getClassName(fact.daytime);
     return (
     <div
-      className="card current-card"
+      className={cardClassName}
       id="id_current_weather_layout"
       data-testid="w_current_wrapper"
     >
-      <div className="card-body">
+      <div className="card-body card-canvas">
         <div className="d-flex flex-row justify-content-between">
           <div className="d-flex flex-row justify-content-start align-items-center">
             <h5
@@ -111,58 +127,54 @@ class Current extends React.Component {
               />
             </span>
           </div>
-          <span>
-            <img
-              id="w_current_update_icon"
-              src={IconUpdate}
-              alt="update icon"
-              width="24"
-              height="24"
-              className={iconUpdateClassName}
-              data-testid="w_current_update_icon"
-            />
-          </span>
+          {processingIconRender()}
         </div>
 
         <h6
           id="w_current_today_title"
-          className="card-subtitle mb-2 text-white text-muted"
+          className="card-subtitle mb-2 text-white"
           data-testid="w_current_today_title"
         >
           Dnes {`${dayOfWeek}, ${dateStr}, ${timeStr}`}
         </h6>
-        <div className="d-flex flex-row">
-          <div>
-            <span
-              id="w_current_fact_temp"
-              className="current_temp text-white"
-              data-testid="w_current_fact_temp"
-            >
-              {fact.temp} &#176;С
-            </span>
+        <div className="row">
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+            <div className="row mx-0">
+              <span
+                id="w_current_fact_temp"
+                className="current_temp text-white"
+                data-testid="w_current_fact_temp"
+              >
+                {fact.temp} &#176;С
+              </span>
+              <div className="current_img ml-3">
+                <img src={cond.icon} width="48" height="48" alt=""/>
+              </div>
+            </div>
+
           </div>
-          <div className="current_img mx-3">
-            <img src={cond.icon} width="48" height="48" alt=""/>
-          </div>
-          <div className="d-flex flex-column justify-content-center ml-2">
-            <span
-              id="w_current_condition"
-              className="text-white"
-              data-testid="w_current_condition"
-            >
-              {condition}
-            </span>
-            <span
-              id="w_current_feels_like"
-              className="text-white"
-              data-testid="w_current_feels_like"
-            >
-              Pocitově {fact.feels_like}
-            </span>
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+            <div className="row mx-0 d-flex flex-column justify-content-center mt-2">
+              <span
+                id="w_current_condition"
+                className="text-white"
+                data-testid="w_current_condition"
+              >
+                {condition}
+              </span>
+              <span
+                id="w_current_feels_like"
+                className="text-white"
+                data-testid="w_current_feels_like"
+              >
+                Pocitově {fact.feels_like}&#176;С
+              </span>
+            </div>
           </div>
         </div>
-        <div className="d-flex flex-row justify-content-start mt-2">
-          <div>
+        <div className="d-flex flex-row justify-content-between mt-2 addInfo">
+          <div className="d-flex flex-column justify-content-center align-items-center mr-2">
+            <span className="text-white">Vítr</span>
             <img src={windIcon} width="24" height="24" alt=""/>
             <span
               id="w_current_wind_speed"
@@ -172,7 +184,8 @@ class Current extends React.Component {
               {fact.wind_speed} m/sec
             </span>
           </div>
-          <div className="ml-5">
+          <div className="d-flex flex-column justify-content-center align-items-center mr-2">
+            <span className="text-white">Vlhkost</span>
             <img src={humidityIcon} width="24" height="24" alt="humidity icon"/>
             <span
               id="w_current_humidity"
@@ -182,7 +195,8 @@ class Current extends React.Component {
               {fact.humidity} %
             </span>
           </div>
-          <div className="ml-5">
+          <div className="d-flex flex-column justify-content-center align-items-center mr-2">
+            <span className="text-white">Tlak</span>
             <img src={pressureIcon} width="24" height="24" alt="pressure icon"/>
             <span
               id="w_current_pressure_mm"
@@ -199,14 +213,4 @@ class Current extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    localeOptions: state.weather.localeOptions,
-    location: state.weather.location,
-    info: state.weather.info,
-    fact: state.weather.fact,
-    processing: state.weather.processing,
-    favorites: state.favorites.all
-  };
-};
-export default connect(mapStateToProps)(Current);
+export default Current;

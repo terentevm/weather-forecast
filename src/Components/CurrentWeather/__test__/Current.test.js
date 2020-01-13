@@ -1,16 +1,29 @@
 import React from 'react';
-import { cleanup } from '@testing-library/react';
-import { createStore } from 'redux';
-import customRender from '../../../Tests/customRender';
+import { render, cleanup } from '@testing-library/react';
+
 import Current from '../Current';
 import fakeStore from '../../../Tests/Fakers/FakeStore';
 
 afterEach(cleanup);
 
 it('check render current weather card without crashing', () => {
-  const store = createStore(() => (fakeStore));
 
-  const { getByTestId } = customRender(<Current />, { store });
+  const {
+    localeOptions,
+    location,
+    info,
+    fact,
+  } = fakeStore.weather;
+  const favorites = fakeStore.favorites.all;
+
+  const { getByTestId } = render(<Current
+    localeOptions={localeOptions}
+    location={location}
+    info={info}
+    fact={fact}
+    favorites={favorites}
+    processing
+  />);
 
   const wrapper = getByTestId('w_current_wrapper');
   const title = getByTestId('w_current_loc_title');
@@ -30,7 +43,7 @@ it('check render current weather card without crashing', () => {
   expect(addToFavBtn).toBeInTheDocument();
 
   expect(updateIcon).toBeInTheDocument();
-  expect(updateIcon).not.toHaveClass('processing');
+  expect(updateIcon).toHaveClass('processing');
   expect(todayTitle).toBeInTheDocument();
   expect(factTempr).toBeInTheDocument();
   expect(factCondition).toBeInTheDocument();
@@ -42,11 +55,26 @@ it('check render current weather card without crashing', () => {
 
 it('check render current weather card and check content', () => {
   fakeStore.weather.processing = true;
-  const store = createStore(() => (fakeStore));
-
   const dateNow = new Date('2019-12-16T11:00:00');
 
-  const { getByTestId } = customRender(<Current dateNow={dateNow} />, { store });
+  const {
+    localeOptions,
+    location,
+    info,
+    fact,
+  } = fakeStore.weather;
+  const favorites = fakeStore.favorites.all;
+
+  const { getByTestId } = render(<Current
+    localeOptions={localeOptions}
+    location={location}
+    info={info}
+    fact={fact}
+    favorites={favorites}
+    dateNow={dateNow}
+    processing={true}
+  />);
+
 
   const wrapper = getByTestId('w_current_wrapper');
   const title = getByTestId('w_current_loc_title');

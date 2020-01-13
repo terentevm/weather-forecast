@@ -20,6 +20,7 @@ conditionsToIcons.set('clear', {
     en: 'Clear',
     ru: 'Ясно',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'clear_day' : 'clear_night'),
 });
 
 conditionsToIcons.set('partly-cloudy', {
@@ -29,6 +30,7 @@ conditionsToIcons.set('partly-cloudy', {
     en: 'Partly cloudy',
     ru: 'Малооблачно',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'cloudy_light_day' : 'cloudy_light_night'),
 });
 
 conditionsToIcons.set('cloudy', {
@@ -38,6 +40,7 @@ conditionsToIcons.set('cloudy', {
     en: 'Cloudy',
     ru: 'Облачно с прояснениями',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'cloudy_day' : 'cloudy_night'),
 });
 
 conditionsToIcons.set('overcast', {
@@ -47,6 +50,7 @@ conditionsToIcons.set('overcast', {
     en: 'Overcast',
     ru: 'пасмурно',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'overcast' : 'cloudy_night'),
 });
 
 conditionsToIcons.set('partly-cloudy-and-light-rain', {
@@ -56,6 +60,7 @@ conditionsToIcons.set('partly-cloudy-and-light-rain', {
     en: 'Partly cloudy and light rain',
     ru: 'Небольшой дождь',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'light_rain_day' : 'light_rain_night'),
 });
 
 conditionsToIcons.set('partly-cloudy-and-rain', {
@@ -65,6 +70,7 @@ conditionsToIcons.set('partly-cloudy-and-rain', {
     en: 'Partly cloudy and rain',
     ru: 'Дождь',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'light_rain_day' : 'light_rain_night'),
 });
 
 conditionsToIcons.set('overcast-and-rain', {
@@ -74,6 +80,7 @@ conditionsToIcons.set('overcast-and-rain', {
     en: 'Overcast and rain',
     ru: 'Cильный дождь',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'rain_day' : 'rain_night'),
 });
 
 conditionsToIcons.set('overcast-thunderstorms-with-rain', {
@@ -83,6 +90,7 @@ conditionsToIcons.set('overcast-thunderstorms-with-rain', {
     en: 'Overcast thunderstorms and rain',
     ru: 'Cильный дождь, гроза',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'thunderstorm' : 'thunderstorm'),
 });
 
 conditionsToIcons.set('cloudy-and-light-rain', {
@@ -91,6 +99,7 @@ conditionsToIcons.set('cloudy-and-light-rain', {
     cs: 'Polojasno a slabý déšť',
     en: 'Partly cloudy and light rain',
     ru: 'Небольшой дождь',
+    getClassName: (daytime) => (daytime === 'd' ? 'light_rain_day' : 'light_rain_night'),
   },
 });
 
@@ -101,6 +110,7 @@ conditionsToIcons.set('overcast-and-light-rain', {
     en: 'Partly cloudy and rain',
     ru: 'Дождь',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'light_rain_day' : 'light_rain_night'),
 });
 
 conditionsToIcons.set('cloudy-and-rain', {
@@ -110,6 +120,7 @@ conditionsToIcons.set('cloudy-and-rain', {
     en: 'Overcast and rain',
     ru: 'Cильный дождь',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'rain_day' : 'rain_night'),
 });
 
 conditionsToIcons.set('overcast-and-wet-snow', {
@@ -119,6 +130,7 @@ conditionsToIcons.set('overcast-and-wet-snow', {
     en: 'Overcast and wet snow',
     ru: 'Дождь со снегом',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'rain_snow' : 'rain_snow'),
 });
 
 conditionsToIcons.set('partly-cloudy-and-light-snow', {
@@ -128,6 +140,7 @@ conditionsToIcons.set('partly-cloudy-and-light-snow', {
     en: 'Partly cloudy and snow',
     ru: 'Небольшой снег',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'snow_night' : 'snow_night'),
 });
 
 conditionsToIcons.set('partly-cloudy-and-snow', {
@@ -137,6 +150,7 @@ conditionsToIcons.set('partly-cloudy-and-snow', {
     en: 'Snow',
     ru: 'Cнег',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'snow_night' : 'snow_night'),
 });
 
 
@@ -147,6 +161,7 @@ conditionsToIcons.set('overcast-and-snow', {
     en: 'Snowfall',
     ru: 'Cнегопад',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'snow_night' : 'snow_night'),
 });
 
 conditionsToIcons.set('cloudy-and-light-snow', {
@@ -156,6 +171,7 @@ conditionsToIcons.set('cloudy-and-light-snow', {
     en: 'Snowy',
     ru: 'Небольшой снег',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'snow_night' : 'snow_night'),
 });
 
 conditionsToIcons.set('overcast-and-light-snow', {
@@ -165,6 +181,7 @@ conditionsToIcons.set('overcast-and-light-snow', {
     en: 'Snowy',
     ru: 'Небольшой снег',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'snow_night' : 'snow_night'),
 });
 
 conditionsToIcons.set('cloudy-and-snow', {
@@ -174,6 +191,7 @@ conditionsToIcons.set('cloudy-and-snow', {
     en: 'Snow',
     ru: 'Cнег',
   },
+  getClassName: (daytime) => (daytime === 'd' ? 'snow_night' : 'snow_night'),
 });
 
 // clear — ясно.

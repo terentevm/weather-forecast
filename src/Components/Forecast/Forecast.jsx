@@ -25,7 +25,7 @@ function Forecast(props) {
       <div
         className="card-body px-1"
       >
-        <h5 className="card-title text-white">Předpověď na 7 dny</h5>
+        <h5 className="card-title">Předpověď na 7 dny</h5>
         <div>
           <ul
             data-testid="fc_day_list"

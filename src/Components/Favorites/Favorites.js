@@ -51,11 +51,13 @@ function Favorites(props) {
     props.history.push('/');
   };
 
+  let cnt = 0;
   const items = favorites.map((location) => {
+    cnt += 1;
     return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
       <div
         className="card favorites_item"
+        key={`fav_item_${cnt}`}
         onClick={() => itemOnClick(location)}
       >
         <div>

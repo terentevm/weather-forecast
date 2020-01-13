@@ -4,7 +4,9 @@ import format from 'date-fns/format';
 import parse from 'date-fns/parse';
 import localeCZ from 'date-fns/locale/cs';
 import MapConditions from '../../Containers/CurrentWeather/MapConditionsToIcons';
-import windIcon from '../../assets/svg/wind.svg';
+import WindIcon from '../Icons/WindIcon';
+import HumidityIcon from '../Icons/HumidityIcon';
+import PressureIcon from '../Icons/PressureIcon';
 import humidityIcon from '../../assets/svg/humidity.svg';
 import pressureIcon from '../../assets/svg/pressure_light.svg';
 import './forecast.css';
@@ -15,32 +17,40 @@ function PartOfDayForecast(props) {
   const cond = MapConditions.get(data.condition);
 
   return (
-    <div className="d-flex flex-row justify-content-start">
-      <span className="fc_day_part__title text-white">{title}</span>
-      <div className="fc_day_part__weather">
-        <img src={cond.icon} width="24" height="24" alt="cond icon" />
-        <span className="text-white ml-2">
+    <div className="row mx-0">
+      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+        <span className="fc_day_part__title">{title}</span>
+      </div>
+      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+        <div className="row mx-0 d-flex flex-row justify-content-start">
+        <div className="fc_day_part__weather">
+          <img src={cond.icon} width="24" height="24" alt="cond icon" />
+          <span className="ml-2">
           { data.temp_avg } &#176;
         </span>
-      </div>
-      <div className="fc_day_part__wind">
-        <img src={windIcon} width="24" height="24" alt="cond icon" />
-        <span className="text-white ml-2">
+        </div>
+        <div className="fc_day_part__wind">
+          <WindIcon fill="#939cb0" width="24" height="24" />
+          <span className="ml-2">
           { data.wind_speed }
         </span>
-      </div>
-      <div className="fc_day_part__wind">
-        <img src={humidityIcon} width="24" height="24" alt="cond icon" />
-        <span className="text-white ml-2">
+        </div>
+        <div className="fc_day_part__wind">
+          <HumidityIcon fill="#939cb0" width="24" height="24" />
+          <span className="ml-2">
           { data.humidity }
         </span>
-      </div>
-      <div className="fc_day_part__wind">
-        <img src={pressureIcon} width="24" height="24" alt="cond icon" />
-        <span className="text-white ml-2">
+        </div>
+        <div className="fc_day_part__wind">
+          <PressureIcon fill="#939cb0" width="24" height="24" />
+          <span className="ml-2">
           { data.pressure_mm }
         </span>
+        </div>
+        </div>
       </div>
+
+
     </div>
   );
 }

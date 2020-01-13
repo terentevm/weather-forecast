@@ -1,12 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CurrentWeather from '../Components/CurrentWeather/Current.jsx';
+import CurrentWeather from './CurrentWeather/CurrentContainer';
 import Forecast from '../Components/Forecast/Forecast';
+
+function loadingStub() {
+  return (
+    <div className="alert alert-primary" role="alert">
+      Data se načítají...
+    </div>
+  );
+}
 
 function WeatherLayout(props) {
   const { location } = props;
 
-  if (!location) return null;
+  if (!location) return loadingStub();
   return (
     <div className="container">
       <div className="row mt-2">

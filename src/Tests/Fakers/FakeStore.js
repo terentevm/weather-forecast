@@ -22,6 +22,12 @@ const fakeStore = {
     fact: fact,
     current: fakeCurrentLocation,
     forecasts: forecasts,
+    fcSelected: {
+      sunrise: '04:38',
+      sunset: '20:31',
+      moon_code: 8,
+      moon_text: 'new-moon',
+    },
   },
   favorites: {
     all: fakeFavorites,

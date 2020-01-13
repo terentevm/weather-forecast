@@ -31,6 +31,7 @@ const weather = (state = initialState, action) => {
         info: action.payload.info,
         fact: action.payload.fact,
         forecasts: [...action.payload.forecasts],
+        fcSelected: action.payload.forecasts[0],
       };
     default:
       return state;

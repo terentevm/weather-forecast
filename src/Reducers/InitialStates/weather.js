@@ -22,4 +22,5 @@ export default {
   },
   current: null,
   forecasts: [],
+  fcSelected: null,
 };

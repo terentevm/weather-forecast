@@ -5,8 +5,10 @@ import {
 
 import { favIndex } from '../Helpers/helpers';
 
-import initialState from './InitialStates/favorites';
-
+//import initialState from './InitialStates/favorites';
+const initialState = {
+  all: [],
+};
 export default function favorites(state = initialState, action) {
   switch (action.type) {
     case ADD_LOCATION_TO_FAVORITES:

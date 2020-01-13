@@ -8,7 +8,7 @@ import {
 import PropTypes from 'prop-types';
 import LocationType from './PropTypes/LocationType';
 import { setCurrentLocationByIP } from './Actions/LocationAction';
-import { NavBar } from './Components/NavBar/NavBar';
+import NavBar from './Components/NavBar/NavBar';
 import WeatherLayout from './Containers/WeatherLayout';
 import Favorites from './Components/Favorites/Favorites';
 
@@ -39,7 +39,11 @@ class App extends React.Component {
 
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  location: PropTypes.shape(LocationType).isRequired,
+  location: PropTypes.shape(LocationType),
+};
+
+App.defaultProps = {
+  location: null,
 };
 
 const mapStateToProps = (state) => ({

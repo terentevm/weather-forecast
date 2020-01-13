@@ -67,7 +67,7 @@ function Autocomplete(props) {
       className="autocomplete_wrapper"
       ref={ref}
     >
-      <div className="autocomplete_input_wrapper">
+      <div className="autocomplete_input_wrapper" role="search">
         <input
           data-testid="ac_input"
           type="text"
