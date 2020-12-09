@@ -4,15 +4,17 @@ let connection = null;
 
 class Connection {
   constructor() {
-    this.host = 'https://tm-weather.herokuapp.com';
+    //this.host = 'https://tm-weather-js-api.herokuapp.com/';
+    //this.host = '';
+    this.host = "http://localhost:9000";
   }
 
   async findLocation(search) {
     try {
-      const res = await axios.get(`${this.host}/api/autocomplete/?query=${search.trim()}`);
+      const res = await axios.get(`${this.host}/api/autocomplete/?q=${search.trim()}`);
 
-      if (Object.prototype.hasOwnProperty.call(res.data, 'results')) {
-        return res.data.results;
+      if (res.status === 200 && res.data instanceof Array) {
+        return res.data;
       }
 
       return [];
@@ -31,7 +33,7 @@ class Connection {
         },
       });
 
-      if (Object.prototype.hasOwnProperty.call(res.data, 'fact')) {
+      if (Object.prototype.hasOwnProperty.call(res.data, 'current')) {
         return res.data;
       }
 
@@ -51,10 +53,10 @@ class Connection {
     try {
       const res = await axios.get(`${this.host}/api/current/`, options);
 
-      if (Object.prototype.hasOwnProperty.call(res.data, 'location')) {
-        return res.data.location;
+      if (res.status === 200) {
+        return res.data;
       }
-
+      
       return [];
     } catch (e) {
       throw e;

@@ -1,55 +1,71 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import CurrentCard from '../../Components/CurrentWeather/Current';
+import React, {useContext} from 'react';
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
+import CurrentCard from '../../Components/CurrentWeather/CurrentCard';
+import CurrentLocation from '../../Components/CurrentWeather/CurrentLocation';
+import CurrentInfo from '../../Components/CurrentWeather/CurrentInfo';
+import CurrentHourly from '../../Components/CurrentWeather/CurrentHourly';
 import DayDurationCard from '../../Components/CurrentDayDuration/DayDuration';
+import { LanguageContext } from '../../Providers/LanguageProvider';
+import MapConditions from './MapConditionsToIcons';
+import { addLocationToFavorites } from '../../Actions/FaviritesActions';
+import { favIndex } from '../../Helpers/helpers';
 
-function Duration(fcSelectedDay) {
-  if (fcSelectedDay) {
-    return (
-      <DayDurationCard fcSelectedDay={fcSelectedDay} />
-    );
-  }
+function Duration(fact, dic) {
+  if ('sunrise_hh_mm' in fact) {
+		return <DayDurationCard fact={fact} dic={dic}/>;
+	}
   return '';
 }
 
-function CurrentContainer({
-  localeOptions,
-  location,
-  info,
-  fact,
-  favorites,
-  fcSelectedDay,
-  processing,
-  dispatch,
-}) {
+function CurrentContainer() {
+
+  const { dictionary, language } = useContext(LanguageContext);
+  const dispatch = useDispatch();
+
+  const { fact, location, currentHourly, favorites,  processing} = useSelector(state => ({
+    fact: state.weather.fact,
+    currentHourly: state.weather.currentHourly,
+    location: state.weather.location,
+    favorites: state.favorites.all,
+    processing: state.weather.processing
+  }), shallowEqual);
+
+  const cond = MapConditions.get(fact.condition);
+  const condClassName = cond.getClassName(fact.day_part);
+
+  const addToFavorite = () => dispatch(addLocationToFavorites(location));
+
+  const isFavorite = favIndex(favorites, location) !== -1;
+
   return (
-    <div>
-      <div className="row mx-0">
-        <CurrentCard
-          localeOptions={localeOptions}
-          location={location}
-          info={info}
-          fact={fact}
-          favorites={favorites}
-          processing={processing}
-          dispatch={dispatch}
-        />
-      </div>
-      <div className="row mx-0">
-        {Duration(fcSelectedDay)}
-      </div>
-    </div>
-  );
+		<div>
+			<div className="row mx-0">
+				<CurrentCard
+          condClassName={condClassName}
+				>
+          <CurrentLocation
+            location={location}
+            dateinfo={fact.dateinfo}
+            processing={processing}
+            addToFavorite={addToFavorite}
+            isFavorite ={isFavorite}
+            dic={dictionary}
+          />
+          <CurrentInfo
+            fact={fact}
+            dic={dictionary}
+            language={language}
+            cond={cond}
+          />
+          <CurrentHourly
+            hourly={currentHourly}
+            dic={dictionary}
+          />
+        </CurrentCard>
+			</div>
+			<div className="row mx-0">{Duration(fact, dictionary)}</div>
+		</div>
+	);
 }
 
-const mapStateToProps = (state) => ({
-  localeOptions: state.weather.localeOptions,
-  location: state.weather.location,
-  info: state.weather.info,
-  fact: state.weather.fact,
-  processing: state.weather.processing,
-  favorites: state.favorites.all,
-  fcSelectedDay: state.weather.fcSelected,
-});
-
-export default connect(mapStateToProps, null)(CurrentContainer);
+export default CurrentContainer

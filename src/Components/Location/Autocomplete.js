@@ -1,9 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import LocationType from '../../PropTypes/LocationType';
 import useOutsideClick from './useOutsideClick';
 import './Autocomplete.css';
 import ClearIcon from '../Icons/Clear';
+
+import { LanguageContext } from '../../Providers/LanguageProvider';
 
 function Autocomplete(props) {
   const {
@@ -16,6 +18,7 @@ function Autocomplete(props) {
   const [search, setSearch] = useState('');
   const [showDropdown, setShowDropdown] = useState(true);
   const ref = useRef();
+  const { dictionary } = useContext(LanguageContext);
 
   useOutsideClick(ref, () => {
     setShowDropdown(false);
@@ -58,7 +61,7 @@ function Autocomplete(props) {
       onClick={(e) => handleSelect(e, item)}
       data-testid={`ac_dropdown_item_${key}`}
     >
-      {`${item.name}, ${item.country}, ${item.region}`}
+      {`${item.name}`}
     </li>
   ));
 
@@ -71,7 +74,7 @@ function Autocomplete(props) {
         <input
           data-testid="ac_input"
           type="text"
-          placeholder="Město"
+          placeholder={dictionary.search.placeholder}
           value={search}
           onChange={(e) => inputOnChange(e)}
           onFocus={() => inputOnFocus()}

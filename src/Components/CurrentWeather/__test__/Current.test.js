@@ -72,7 +72,7 @@ it('check render current weather card and check content', () => {
     fact={fact}
     favorites={favorites}
     dateNow={dateNow}
-    processing={true}
+    processing
   />);
 
 

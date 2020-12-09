@@ -22,7 +22,7 @@ export function cleanLocations() {
 export function setCurrentLocationByIP() {
   return function (dispatch) {
     const conn = getConn();
-
+    
     return conn.getCurrentInfo()
       .then((locInfo) => {
         dispatch(setForecasts(locInfo));
@@ -49,12 +49,15 @@ export function setForecasts(location) {
     const conn = getConn();
 
     dispatch({ type: PROCESSING_REQUEST });
+    console.log('msg from setForecasts func');
+    console.dir(location);
 
     return conn.getForecast({
       lat: location.lat,
       lon: location.lon,
       limit: 7,
     }).then((data) => {
+
       dispatch({
         type: SET_FORECAST_INFO,
         payload: data,
@@ -71,9 +74,11 @@ export function findLocation(search) {
 
     return conn.findLocation(search)
       .then((data) => {
+        console.dir(data);
         dispatch(CompleteRequestLocations(data));
       })
       .catch(() => {
+        console.dir('error');
         dispatch({ type: REQUEST_LOCATIONS_FAILED, payload: [] });
       });
   };

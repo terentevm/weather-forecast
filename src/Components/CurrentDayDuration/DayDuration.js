@@ -1,9 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {useRef, useState, useLayoutEffect} from 'react';
 import differenceInMinutes from 'date-fns/differenceInMinutes';
-import timeStringType from '../../PropTypes/TimeStringType';
 import SunIcon from '../../assets/icons/sun.svg';
 import MoonIcon from '../../assets/icons/moon.svg';
+import SunriseIcon from '../../assets/icons/sunrise.svg';
+import SunsetIcon from '../../assets/icons/sunset.svg';
+
+import useDimensions from "react-use-dimensions";
+
 import './DayDuration.css';
 
 function getIcon(polarNight = false) {
@@ -13,65 +16,62 @@ function getIcon(polarNight = false) {
   return (<img src={MoonIcon} alt="sun icon" width={68} height={68} />);
 }
 
-function cardBody(polarNight = false, durationTemplate, fcSelectedDay) {
-  if (polarNight === false) {
-    return (
+function cardBody(durationTemplate, sunrise, sunset, lang) {
+
+  return (
     <div className="d-flex flex-column ml-1">
       <h6 className="card-title">{durationTemplate}</h6>
-      <span className="card-text">{`Východ slunce - ${fcSelectedDay.sunrise}`}</span>
-      <span className="card-text">{`Západ slunce - ${fcSelectedDay.sunset}`}</span>
-    </div>
-    );
-  }
-
-  return (
-    <div className="d-flex flex-column ml-1">
-      <h6 className="card-title text-white">{durationTemplate}</h6>
-      <span className="card-text text-white">{`Další svítání: ${fcSelectedDay.sunrise_next}`}</span>
+      <span className="card-text">{`${lang.sunrise} - ${sunrise}`}</span>
+      <span className="card-text">{`${lang.sunset} - ${sunset}`}</span>
     </div>
   );
+
 }
 
-function DayDuration({ fcSelectedDay }) {
-  const { sunrise, sunset, polar } = fcSelectedDay;
-  const polarNight = polar === 'n';
-  let durationTemplate = '';
-  let className = 'card duration-card w-100 mt-3 mb-3 py-1';
-  if (polarNight === false) {
-    className += ' day';
-    const sunriseParts = sunrise.split(':');
-    const sunsetParts = sunset.split(':');
+function DayDuration({ fact, dic }) {
 
-    const diffMin = differenceInMinutes(
-      new Date(2020, 1, 1, parseInt(sunsetParts[0], 10), parseInt(sunsetParts[1], 10)),
-      new Date(2020, 1, 1, parseInt(sunriseParts[0], 10), parseInt(sunriseParts[1], 10))
-    );
-    const hours = Math.floor(diffMin / 60);
-    const min = diffMin - (hours * 60);
+  const [durationRef, blockSize] = useDimensions();
 
-    durationTemplate = `Délka dne: ${hours} h ${min} min`;
-  } else {
-    className += ' night';
-    durationTemplate = 'Polární noc';
-  }
+  let divStyle = blockSize ? {height: blockSize.width / 2} :{};
+
+  const { dayDuration, time } = dic;
+
+  const {duration:durationTitle} = dayDuration;
+  const { sunrise_hh_mm: sunrise, sunset_hh_mm: sunset, day_duration } = fact;
+
+  const {h:hours, m:min } = day_duration;
+  const durationTemplate = `${hours} ${time.h} ${min} ${time.min}`;
+
 
   return (
-    <div className={className}>
-      <div className="row mx-0 d-flex flex-row">
-        <div className="d-flex justify-content-center align-items-center mx-2">
-          {getIcon(polarNight)}
+    <div  className="duration-card w-100 px-5">
+      <div ref={durationRef} className="duration-wrapper w-100">
+        <div className="module-border-wrap" style={divStyle}>
+          <div className="module" style={divStyle}>
+            <span className="duration-title">{ durationTitle }</span>
+            <span className="duration-value">{durationTemplate}</span>
+
+          </div>
         </div>
-        {cardBody(polarNight, durationTemplate, fcSelectedDay)}
+        <div className="duration-start-end">
+          <div className="duration-part-box">
+            <div>
+              <img src={SunriseIcon} alt="sinrise" width="36px" height="36px" />
+            </div>
+
+            <span>{ sunrise }</span>
+          </div>
+          <div className="duration-part-box">
+            <div>
+              <img src={SunsetIcon} alt="sinrise" width="36px" height="36px" />
+            </div>
+            <span>{ sunset }</span>
+          </div>
+        </div>
       </div>
-    </div>
-  );
+
+		</div>
+	);
 }
 
-DayDuration.propTypes = {
-  fcSelectedDay: PropTypes.shape({
-    sunrise: timeStringType.isRequired,
-    sunset: timeStringType.isRequired,
-    polar: PropTypes.string,
-  }).isRequired,
-};
 export default DayDuration;

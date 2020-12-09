@@ -1,13 +1,19 @@
 
 .current-card {
-    border-radius: 12px;
+    /*border-radius: 12px;*/
     border: none;
-
     width: 100%;
     background-repeat: no-repeat;
-    /*background-attachment: fixed;*/
     background-position: center;
     background-size: cover;
+}
+
+.blur {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
 }
 
 .card-canvas {

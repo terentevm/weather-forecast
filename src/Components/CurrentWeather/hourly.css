@@ -1,0 +1,7 @@
+.hour_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 50px;
+    margin: 10px;
+}
