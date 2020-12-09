@@ -1,7 +1,4 @@
 import React from 'react';
-import HumidityIcon from '../Icons/HumidityIcon';
-import PressureIcon from '../Icons/PressureIcon';
-import WindIcon from '../Icons/WindIcon';
 
 import MapConditions from '../../Containers/CurrentWeather/MapConditionsToIcons';
 import format from 'date-fns/format';
@@ -36,7 +33,8 @@ export default ({ forecast, dic, language }) => {
 				</p>
 			</div>
 			<div class="temp">
-				+20<sup>&deg;</sup>
+				{Math.round(forecast.temp_max)}
+				<sup>&deg;</sup>
 			</div>
 			<div class="row">
 				<div class="col-4">

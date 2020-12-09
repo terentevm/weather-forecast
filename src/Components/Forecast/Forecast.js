@@ -12,7 +12,7 @@ export default () => {
   }), shallowEqual);
 
   const forecastList = forecasts.map((item) => {
-    
+  
     return (
       <ForecastMobileDay forecast={item} key={item.dt} dic={dictionary} language={language}/>
     );

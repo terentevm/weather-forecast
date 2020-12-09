@@ -5,7 +5,7 @@ let connection = null;
 class Connection {
   constructor() {
     //this.host = 'https://tm-weather-js-api.herokuapp.com/';
-    //this.host = '';
+    this.host = '';
     this.host = "http://localhost:9000";
   }
 
