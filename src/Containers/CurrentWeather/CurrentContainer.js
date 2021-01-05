@@ -8,7 +8,7 @@ import DayDurationCard from '../../Components/CurrentDayDuration/DayDuration';
 import { LanguageContext } from '../../Providers/LanguageProvider';
 import MapConditions from './MapConditionsToIcons';
 import { addLocationToFavorites } from '../../Actions/FaviritesActions';
-import { favIndex } from '../../Helpers/helpers';
+import { favIndex, browser_supports_webp } from '../../Helpers/helpers';
 
 function Duration(fact, dic) {
   if ('sunrise_hh_mm' in fact) {
@@ -31,7 +31,7 @@ function CurrentContainer() {
   }), shallowEqual);
 
   const cond = MapConditions.get(fact.condition);
-  const condClassName = cond.getClassName(fact.day_part);
+  const condClassName = cond.getClassName(fact.day_part) + (browser_supports_webp() === false ? "_jpeg" : "");
 
   const addToFavorite = () => dispatch(addLocationToFavorites(location));
 

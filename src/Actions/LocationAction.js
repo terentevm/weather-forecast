@@ -49,8 +49,6 @@ export function setForecasts(location) {
     const conn = getConn();
 
     dispatch({ type: PROCESSING_REQUEST });
-    console.log('msg from setForecasts func');
-    console.dir(location);
 
     return conn.getForecast({
       lat: location.lat,

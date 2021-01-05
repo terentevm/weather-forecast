@@ -11,8 +11,7 @@ export function addLocationToFavorites(location) {
 }
 
 export function removeLocationFromFavorites(location) {
-  console.log('removing...');
-  console.dir(location);
+
   return function (dispatch) {
     dispatch({
       type: REMOVE_LOCATION_FROM_FAVORITES,

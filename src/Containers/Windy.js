@@ -1,8 +1,7 @@
 import React, {useEffect} from 'react';
 
 export default function ({ location }) {
-  console.log('render windy');
-  console.dir(location);
+
   const options = {
     // Required: API key
     key: 'qcuWBBuhHFjZMHF8OHJA3mgmObMMGuxh', // REPLACE WITH YOUR KEY !!!
@@ -27,9 +26,7 @@ export default function ({ location }) {
       // 'picker' and other usefull stuff
 
       const { map, store } = windyAPI;
-      console.log('fsfsfsdfsd');
-      console.dir(store);
-      console.dir(store.get('lang'));
+
       store.set('lang', 'cs');
       // .map is instance of Leaflet map
       windyAPI.picker.open({

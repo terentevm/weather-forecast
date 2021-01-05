@@ -125,10 +125,58 @@
     background-image: url("../../assets/backgrounds/webp/snow_night.webp");
 }
 
-/*.day_sunny {*/
-/*    background-image: url("../../assets/backgrounds/webp/night_clear.webp");*/
-/*    background-repeat: no-repeat;*/
-/*    background-position: center;*/
-/*    background-size: cover;*/
-/*    border: none;*/
-/*}*/
+.clear_day_jpeg {
+    background-image: url("../../assets/backgrounds/clear_day.jpeg");
+}
+
+.clear_night_jpeg {
+    background-image: url("../../assets/backgrounds/clear_night.jpeg");
+}
+
+.cloudy_light_day_jpeg {
+    background-image: url("../../assets/backgrounds/cloudy_light_day.jpeg");
+}
+
+.cloudy_light_night_jpeg {
+    background-image: url("../../assets/backgrounds/cloudy_light_night.jpeg");
+}
+
+.cloudy_day_jpeg {
+    background-image: url("../../assets/backgrounds/cloudy_day.jpeg");
+}
+
+.overcast_jpeg {
+    background-image: url("../../assets/backgrounds/overcast.jpeg");
+}
+
+.cloudy_night_jpeg {
+    background-image: url("../../assets/backgrounds/cloudy_night.jpeg");
+}
+
+.light_rain_day_jpeg {
+    background-image: url("../../assets/backgrounds/light_rain_day.jpeg");
+}
+
+.light_rain_night_jpeg {
+    background-image: url("../../assets/backgrounds/light_rain_night.jpeg");
+}
+
+.rain_day_jpeg {
+    background-image: url("../../assets/backgrounds/rain_day.jpeg");
+}
+
+.rain_night_jpeg {
+    background-image: url("../../assets/backgrounds/rain_night.jpeg");
+}
+
+.thunderstorm_jpeg {
+    background-image: url("../../assets/backgrounds/thunderstorm.jpeg");
+}
+
+.rain_snow_jpeg {
+    background-image: url("../../assets/backgrounds/rain_snow.jpeg");
+}
+
+.snow_night_jpeg {
+    background-image: url("../../assets/backgrounds/snow_night.jpeg");
+}

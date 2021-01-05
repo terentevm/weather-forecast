@@ -30,8 +30,6 @@ function CurrentHourly({ hourly, dic }) {
   const ArrowLeft = Arrow({ text: '<', className: 'arrow-prev' });
   const ArrowRight = Arrow({ text: '>', className: 'arrow-next' });
 
-  console.log('hourly');
-  console.dir(hourly);
 	let cnt = 0;
 	const forecastList = hourly.map((item) => {
 		cnt++;

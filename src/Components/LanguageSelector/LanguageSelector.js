@@ -33,7 +33,6 @@ export default function ({language, options, onChange}) {
   };
   const dropUpClassName = 'dropup-content' + (listVisible === true ? ' visible' : '');
   const flagClassName = `dropdown_title_icon dropdown_title_icon_${language.id}`;
-  console.log(flagClassName);
 
   const items = DropUpItems(options, onItemSelect);
 
