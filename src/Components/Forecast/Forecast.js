@@ -19,7 +19,7 @@ export default () => {
   });
 
   return (
-    <div  data-testid="fc_mobile_wrapper">
+    <div className="forecast_layout" data-testid="fc_mobile_wrapper">
       { forecastList }
     </div>
   );

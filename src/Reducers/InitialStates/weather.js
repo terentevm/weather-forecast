@@ -20,6 +20,10 @@ export default {
     pressure_mm: 0,
     humidity: 0,
     hourly: [],
+    day_duration: {
+      h: 0,
+      m: 0
+    }
   },
   currentHourly: [],
   current: null,

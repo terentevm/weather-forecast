@@ -38,6 +38,10 @@ const ru = {
   },
   forecast: {
     title: 'Прогноз на 7 дней'
+  },
+
+  favorites: {
+    header: "Избранные локации"
   }
 
 };

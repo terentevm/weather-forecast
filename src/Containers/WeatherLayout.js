@@ -1,12 +1,13 @@
 import React, {useContext} from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
 import CurrentWeather from './CurrentWeather/CurrentContainer';
+import FavoriteLocations from "./FavoriteLocations";
 import LangSelector from './LangSelector';
 import Footer from '../Components/Footer/Footer';
 import Forecast from '../Components/Forecast/Forecast';
 import LoadingAlert from '../Components/Alerts/LoadingAlert';
 import { LanguageContext } from '../Providers/LanguageProvider';
-
+import './style/layout-grid.css';
 function WeatherLayout() {
   const location  = useSelector((state) => state.weather.location, shallowEqual);
 
@@ -15,18 +16,21 @@ function WeatherLayout() {
   if (!location) return <LoadingAlert message = {dictionary.search.loadingPlaceholder} />;
 
   return (
-		<div className="container">
-			<div className="row mt-2">
-				<div className="col-xs-12 col-sm-12 col-md-6 px-0">
-            <CurrentWeather />
-				</div>
-				<div className="col-xs-12 col-sm-12 col-md-6 px-0 px-sm-1 mt-2 mt-md-0">
-          <Forecast className="d-block d-sm-none"/>
-				</div>
+		<div className="grid-container">
+			<div className="part-current-weather">
+				<CurrentWeather />
 			</div>
-			<Footer>
-				<LangSelector />
-			</Footer>
+			<div className="part-favorites">
+				<FavoriteLocations/>
+			</div>
+			<div className="part-forecast">
+				<Forecast className="d-block d-sm-none"/>
+			</div>
+			<div className="part-footer">
+				<Footer>
+					<LangSelector />
+				</Footer>
+			</div>
 		</div>
 	);
 }

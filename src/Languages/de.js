@@ -39,6 +39,9 @@ const de = {
 	forecast: {
 		title: "7 Tage Vorhersage",
 	},
+	favorites: {
+		header: "Ausgewählte Standorte"
+	}
 };
 
 export default de;

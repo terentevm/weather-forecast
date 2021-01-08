@@ -1,3 +1,25 @@
+
+.favorites-list {
+    list-style: none;
+    margin: 0px 0px;
+    margin-block-start: 0px;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+}
+
+.favorites-li {
+    width: 100%;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid grey;
+}
+
+.favorites-li:hover {
+    color: #0052d4;
+}
+
 .favorites_row {
      display: flex;
      flex-wrap: wrap;

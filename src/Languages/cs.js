@@ -38,6 +38,9 @@ const cs = {
   },
   forecast: {
     title: 'Předpověď na 7 dny'
+  },
+  favorites: {
+    header: "Vybrané lokality"
   }
 
 };

@@ -1,3 +1,8 @@
+.forecast_layout {
+    background: #ffffff;
+    margin-top: 0px;
+    padding: 10px 5px;
+}
 .day-card {
     position: relative;
     padding: 1rem;
@@ -8,7 +13,6 @@
     box-shadow: 5px 6px 6px 2px #e9ecef;
     text-align: center
 
-    
 }
 .day-card:hover {
    border-left: 5px solid rgba(37, 167, 37, 0.76);     

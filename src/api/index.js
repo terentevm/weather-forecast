@@ -6,7 +6,7 @@ class Connection {
   constructor() {
     //this.host = 'https://tm-weather-js-api.herokuapp.com/';
     this.host = '';
-    this.host = "http://localhost:9000";
+    //this.host = "http://localhost:9000";
   }
 
   async findLocation(search) {

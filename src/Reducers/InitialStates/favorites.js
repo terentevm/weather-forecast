@@ -1,3 +1,5 @@
+import { getFavoritesFromStore } from '../FavoritesStore';
+
 export default {
-  all: [],
+  all: getFavoritesFromStore(),
 };
